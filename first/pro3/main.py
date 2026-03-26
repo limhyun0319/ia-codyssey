@@ -52,9 +52,11 @@ def process_danger_items(list, output_path):
     return []
 
 def binary_file(list, file_path):
+    rows = list[1:]
     try:
+        rows.sort(key=lambda x: float(x[-1]), reverse=True)
         with open(file_path, 'wb') as f:
-            pickle.dump(list, f)
+            pickle.dump(rows, f)
         print(f"성공: '{file_path}'에 이진 데이터 저장 완료.")
     except Exception as e:
         print(f'이진 저장 중 에러 발생: {e}')
